@@ -1,5 +1,7 @@
 package com.me.mygdxgame;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 public class Assets {
 	public static Texture background;
@@ -35,7 +38,7 @@ public class Assets {
 	public static BitmapFont font;
 	
 	public static Texture narutoItems;
-	public static TextureRegion[] narutoRun;
+	public static Array<TextureRegion> narutoRun;
 
 	public static Music music;
 	public static Sound jumpSound;
@@ -88,13 +91,13 @@ public class Assets {
 		coinSound = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
 		clickSound = Gdx.audio.newSound(Gdx.files.internal("data/click.wav"));
 		
-		narutoItems = items = loadTexture("data/items.png");
-		narutoRun[0] =  new TextureRegion(narutoItems, 346, 294, 63, 47);
-		narutoRun[0] =  new TextureRegion(narutoItems, 409, 294, 63, 47);
-		narutoRun[0] =  new TextureRegion(narutoItems, 476, 294, 63, 47);
-		narutoRun[0] =  new TextureRegion(narutoItems, 544, 294, 63, 47);
-		narutoRun[0] =  new TextureRegion(narutoItems, 608, 294, 63, 47);
-		narutoRun[0] =  new TextureRegion(narutoItems, 676, 294, 63, 47);
+		narutoItems = loadTexture("data/items.png");
+		narutoRun = new Array<TextureRegion>();
+		narutoRun.add(new TextureRegion(items, 0, 128, 32, 32));  
+		narutoRun.add(new TextureRegion(items, 32, 128, 32, 32));
+		narutoRun.add(new TextureRegion(items, 64, 128, 32, 32));
+		narutoRun.add(new TextureRegion(items, 96, 128, 32, 32));
+		narutoRun.add(new TextureRegion(items, 128, 128, 32, 32));
 		
 	}
 

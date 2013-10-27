@@ -1,5 +1,6 @@
 package com.awa.structure;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -58,6 +59,12 @@ public class InformativeEntity extends TextureRegion implements IGraphicEntity {
 	public void setBounds(Rectangle newBounds) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Sprite getSpriteToDraw() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

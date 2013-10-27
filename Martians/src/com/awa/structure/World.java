@@ -14,34 +14,31 @@ import com.me.mygdxgame.Assets;
 public class World {
 	
 	public final ArrayList<IGraphicEntity> entities;
-	public  ArrayList<Animation> coins;
-	private Entity entity;
-	private Sprite sprite;
 	private Texture texture;
+	private ArrayList<AwaAnimation> narutoAnims;
+	private AwaAnimation narutoRunning;
+	private AnimatedEntity naruto;
 	
 	public World() {
 		Assets.load();
-		coins = new ArrayList<Animation>();
-		for(int i = 1;i<=30;i++)
-		{
-			coins.add(Assets.coinAnim);
-			coins.get(i-1);
-		}
-		
-		texture = new Texture(Gdx.files.internal("data/help.png"));
-		sprite = new Sprite(texture);
-		entity = new Entity(20, 20, 40, 40, this.sprite);
-		this.entities =  new ArrayList<Entity>(); 
-		this.entities.add(entity);
+		narutoAnims = new ArrayList<AwaAnimation>();
+		entities = new ArrayList<IGraphicEntity>();
+		narutoRunning =  new AwaAnimation(0.2f, Assets.narutoRun);
+		//narutoRunning.play();
+		narutoAnims.add(narutoRunning);
+		naruto = new AnimatedEntity(30, 30, 30, 30, narutoAnims);
+		entities.add(naruto);
 	}
 
 	public void drawWorld(SpriteBatch spriteBatch){
 		for (Iterator iterator = this.entities.iterator(); iterator.hasNext();) {
-			Entity entity = (Entity) iterator.next();
+			IGraphicEntity entity = (IGraphicEntity) iterator.next();
 			if(entity.isDrawable()){
-				
-				entity.drawEntity(spriteBatch);
+				entity.draw(spriteBatch);
 			}
 		}
+		
+		texture = new Texture(Gdx.files.internal("data/help.png"));
+		spriteBatch.draw(texture,0,0,50,50);
 	}
 }

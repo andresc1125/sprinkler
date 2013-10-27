@@ -16,6 +16,8 @@ public class PlayableEntity extends Sprite implements IGraphicEntity{
 	public PlayableEntity(float x, float y, float width, float height) {
 		this.position = new Vector2(x, y);
 		this.bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
+		this.drawable = true;
+		this.visible = true;
 	}
 	@Override
 	public boolean isDrawable() {
@@ -37,8 +39,8 @@ public class PlayableEntity extends Sprite implements IGraphicEntity{
 
 	@Override
 	public void draw(SpriteBatch spriteBatch) {
-		// TODO Auto-generated method stub
 		
+		getSpriteToDraw().draw(spriteBatch);
 	}
 
 	@Override
@@ -69,6 +71,11 @@ public class PlayableEntity extends Sprite implements IGraphicEntity{
 	public void setBounds(Rectangle newBounds) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Sprite getSpriteToDraw() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
