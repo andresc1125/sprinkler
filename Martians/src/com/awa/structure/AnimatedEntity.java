@@ -31,7 +31,6 @@ public class AnimatedEntity extends PlayableEntity {
 
 	@Override
 	public Sprite getSpriteToDraw() {
-		
 		return this.getCurrentAnimation().getKeySprite();
 	}
 

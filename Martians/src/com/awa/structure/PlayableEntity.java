@@ -39,8 +39,8 @@ public class PlayableEntity extends Sprite implements IGraphicEntity{
 
 	@Override
 	public void draw(SpriteBatch spriteBatch) {
-		
-		getSpriteToDraw().draw(spriteBatch);
+		Sprite returnedSprite = getSpriteToDraw();
+		returnedSprite.draw(spriteBatch);
 	}
 
 	@Override

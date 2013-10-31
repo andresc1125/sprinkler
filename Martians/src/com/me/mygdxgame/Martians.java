@@ -76,7 +76,7 @@ public class Martians implements ApplicationListener {
 		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
 		
 		sprite = new Sprite(Assets.narutoRun.get(0));
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
+		sprite.setSize(0.1f, 0.1f * sprite.getHeight() / sprite.getWidth());
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 		world = new World();
@@ -95,7 +95,7 @@ public class Martians implements ApplicationListener {
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		//sprite.draw(batch);
+	//	sprite.draw(batch);
 		world.drawWorld(batch);
 		//batch.draw(Assets.narutoRun.get(0),20,20,67,67);
 		batch.end();

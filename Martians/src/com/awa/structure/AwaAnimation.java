@@ -8,13 +8,19 @@ import com.badlogic.gdx.utils.Array;
 public class AwaAnimation extends Animation {
 	
 	private boolean isLoop;
+	private short status;
+	
+	public static final int PLAYING = 1;
+	public static final int PAUSED = PLAYING + 1;
+	public static final int STOPED = PAUSED + 1;
+	
 
-	private float lastTimeDrawed;
+	private long lastTimeDrawed;
 
 	public AwaAnimation(float frameDuration,Array<? extends TextureRegion> keyFrames) {
-		
 		super(frameDuration, keyFrames);
-		// TODO Auto-generated constructor stub
+		isLoop = false;
+		status = STOPED;
 	}
 	
 	
@@ -29,19 +35,25 @@ public class AwaAnimation extends Animation {
 		Sprite currentSprite = new Sprite(currentFrame);
 		lastTimeDrawed = System.currentTimeMillis();
 		isLoop = false;
+	
+		currentSprite.setSize(0.1f, 0.1f * currentSprite.getHeight() / currentSprite.getWidth());
+		currentSprite.setOrigin(currentSprite.getWidth()/2, currentSprite.getHeight()/2);
+		currentSprite.setPosition(-currentSprite.getWidth(), -currentSprite.getHeight());
 		return currentSprite ;
 	}
 	
 	public Sprite getKeySprite() 
-	{
-		float actualTime = System.currentTimeMillis();
-		float deltaTime = actualTime - getLastTimeDrawed();
-		setLastTimeDrawed(actualTime);
-		TextureRegion currentFrame = super.getKeyFrame(deltaTime , isLoop());
+	{	
+		long actualTime = System.currentTimeMillis();
+		long deltaTime = actualTime - getLastTimeDrawed();
+		deltaTime = deltaTime / 1000;
+		System.out.println("el tiempo delta va en "+ deltaTime);
+		//System.out.println("el tiempo actual e milis " + System.currentTimeMillis());
+		TextureRegion currentFrame = super.getKeyFrame(deltaTime , true);
 		Sprite currentSprite = new Sprite(currentFrame);
 		
 		//de aca para alla esta quemado
-		currentSprite.setSize(0.3f, 0.3f * currentSprite.getHeight() / currentSprite.getWidth());
+		currentSprite.setSize(0.1f, 0.1f * currentSprite.getHeight() / currentSprite.getWidth());
 		currentSprite.setOrigin(currentSprite.getWidth()/2, currentSprite.getHeight()/2);
 		currentSprite.setPosition(-currentSprite.getWidth()/2, -currentSprite.getHeight()/2);
 		return currentSprite ;
@@ -49,7 +61,8 @@ public class AwaAnimation extends Animation {
 	
 	public void play()
 	{
-		lastTimeDrawed = System.currentTimeMillis();
+		setLastTimeDrawed(System.currentTimeMillis());
+		this.status = PLAYING;
 	}
 
 	public boolean isLoop() {
@@ -62,12 +75,12 @@ public class AwaAnimation extends Animation {
 	}
 
 
-	public float getLastTimeDrawed() {
+	public long getLastTimeDrawed() {
 		return lastTimeDrawed;
 	}
 
 
-	public void setLastTimeDrawed(float lastTimeDrawed) {
+	public void setLastTimeDrawed(long lastTimeDrawed) {
 		this.lastTimeDrawed = lastTimeDrawed;
 	}
 	
