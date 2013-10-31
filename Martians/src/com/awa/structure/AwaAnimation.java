@@ -36,7 +36,7 @@ public class AwaAnimation extends Animation {
 	{
 		float actualTime = System.currentTimeMillis();
 		float deltaTime = actualTime - getLastTimeDrawed();
-		setLastTimeDrawed(deltaTime);
+		setLastTimeDrawed(actualTime);
 		TextureRegion currentFrame = super.getKeyFrame(deltaTime , isLoop());
 		Sprite currentSprite = new Sprite(currentFrame);
 		
