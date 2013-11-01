@@ -20,7 +20,7 @@ public class World {
 	private AnimatedEntity naruto;
 	
 	public World() {
-		Assets.load();
+//		Assets.load();
 		narutoAnims = new ArrayList<AwaAnimation>();
 		entities = new ArrayList<IGraphicEntity>();
 		narutoRunning =  new AwaAnimation(0.5f, Assets.narutoRun);
@@ -39,8 +39,7 @@ public class World {
 		}
 		
 	//	narutoRunning.getKeySprite(0.4f, false).draw(spriteBatch);
-		
-		texture = new Texture(Gdx.files.internal("data/help.png"));
-		spriteBatch.draw(texture,0,0,50,50);
+//		texture = new Texture(Gdx.files.internal("data/help.png"));
+//		spriteBatch.draw(texture,0,0,50,50);
 	}
 }
