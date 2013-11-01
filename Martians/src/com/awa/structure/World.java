@@ -3,12 +3,8 @@ package com.awa.structure;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.me.mygdxgame.Assets;
 
 public class World {
@@ -23,7 +19,7 @@ public class World {
 //		Assets.load();
 		narutoAnims = new ArrayList<AwaAnimation>();
 		entities = new ArrayList<IGraphicEntity>();
-		narutoRunning =  new AwaAnimation(0.5f, Assets.narutoRun);
+		narutoRunning =  new AwaAnimation(0.3f, Assets.narutoRun);
 		narutoRunning.play();
 		narutoAnims.add(narutoRunning);
 		naruto = new AnimatedEntity(30, 30, 30, 30, narutoAnims);

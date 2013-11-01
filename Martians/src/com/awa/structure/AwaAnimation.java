@@ -49,7 +49,7 @@ public class AwaAnimation extends Animation {
 		deltaTime = deltaTime / 1000;
 //		System.out.println("el tiempo delta va en "+ deltaTime);
 		//System.out.println("el tiempo actual e milis " + System.currentTimeMillis());
-		TextureRegion currentFrame = super.getKeyFrame(deltaTime , true);
+		TextureRegion currentFrame = super.getKeyFrame(deltaTime , false);
 		Sprite currentSprite = new Sprite(currentFrame);
 		
 		//de aca para alla esta quemado
