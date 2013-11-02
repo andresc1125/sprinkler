@@ -89,4 +89,8 @@ public class AwaAnimation extends Animation {
 		temp.setPosition(10, 10);
 		return temp ; 
 	}
+	
+	public void dispose(){
+		getSpriteToDraw().getTexture().dispose();
+	}
 }

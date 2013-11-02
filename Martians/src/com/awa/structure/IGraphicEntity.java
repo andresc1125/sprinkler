@@ -17,5 +17,6 @@ public interface IGraphicEntity {
 	public void setVisibility(boolean visibility);
 	public void setZIndex(short zIndex);
 	public void setBounds(Rectangle newBounds);
+	public void dispose();
 
 }

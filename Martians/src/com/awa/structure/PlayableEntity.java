@@ -77,5 +77,10 @@ public class PlayableEntity extends Sprite implements IGraphicEntity{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

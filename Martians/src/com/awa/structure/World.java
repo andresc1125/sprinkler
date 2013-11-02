@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.mygdxgame.Assets;
+import com.sun.xml.internal.stream.Entity;
 
 public class World {
 	
@@ -38,4 +39,11 @@ public class World {
 //		texture = new Texture(Gdx.files.internal("data/help.png"));
 //		spriteBatch.draw(texture,0,0,50,50);
 	}
+	
+	
+	public void removeEntity(IGraphicEntity entity){
+		entities.remove(entity);
+		entity.dispose();
+	}
+	
 }

@@ -33,5 +33,10 @@ public class AnimatedEntity extends PlayableEntity {
 	public Sprite getSpriteToDraw() {
 		return this.getCurrentAnimation().getKeySprite();
 	}
+	
+	@Override
+	public void dispose(){
+		this.currentAnimation.getKeySprite().getTexture().dispose();
+	}
 
 }
