@@ -46,4 +46,9 @@ public class World {
 		entity.dispose();
 	}
 	
+	
+	public void addEntity(IGraphicEntity entity){
+		entities.add(entity);
+	}
+	
 }
