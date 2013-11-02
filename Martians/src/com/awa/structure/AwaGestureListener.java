@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 public class AwaGestureListener implements GestureListener{
 
 	private World world;
-	
-	public AwaGestureListener(World world, SpriteBatch spriteBatch){
+	public AwaGestureListener(World world){
 		this.world = world;
 	}
 	
@@ -21,7 +20,8 @@ public class AwaGestureListener implements GestureListener{
 	@Override
 	public boolean tap(float x, float y, int count, int button) {
 		// TODO Auto-generated method stub
-		
+		AnimatedEntity test = (AnimatedEntity) world.getEntities().get(0);
+		world.removeEntity(test);
 		return false;
 	}
 

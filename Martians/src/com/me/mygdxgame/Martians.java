@@ -1,5 +1,6 @@
 package com.me.mygdxgame;
 
+import com.awa.structure.AwaGestureListener;
 import com.awa.structure.World;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.input.GestureDetector;
 
 public class Martians implements ApplicationListener {
 	/*private OrthographicCamera camera;
@@ -60,6 +62,7 @@ public class Martians implements ApplicationListener {
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
+	private AwaGestureListener listener;
 	
 	@Override
 	public void create() {		
@@ -80,6 +83,9 @@ public class Martians implements ApplicationListener {
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 		world = new World();
+		listener = new AwaGestureListener(world);
+		GestureDetector detector = new GestureDetector(listener);
+		Gdx.input.setInputProcessor(detector);
 	}
 
 	@Override
@@ -99,6 +105,7 @@ public class Martians implements ApplicationListener {
 		world.drawWorld(batch);
 		//batch.draw(Assets.narutoRun.get(0),20,20,67,67);
 		batch.end();
+		
 	}
 
 	@Override

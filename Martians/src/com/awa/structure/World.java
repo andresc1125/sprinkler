@@ -51,4 +51,8 @@ public class World {
 		entities.add(entity);
 	}
 	
+	
+	public ArrayList<IGraphicEntity> getEntities(){
+		return this.entities;
+	}
 }
