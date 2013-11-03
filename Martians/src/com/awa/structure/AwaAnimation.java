@@ -1,5 +1,6 @@
 package com.awa.structure;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -33,35 +34,32 @@ public class AwaAnimation extends Animation {
 	{
 		TextureRegion currentFrame = super.getKeyFrame(stateTime , looping);
 		Sprite currentSprite = new Sprite(currentFrame);
-		lastTimeDrawed = System.currentTimeMillis();
-		isLoop = false;
-	
-		currentSprite.setSize(0.1f, 0.1f * currentSprite.getHeight() / currentSprite.getWidth());
-		currentSprite.setOrigin(currentSprite.getWidth()/2, currentSprite.getHeight()/2);
-		currentSprite.setPosition(-currentSprite.getWidth(), -currentSprite.getHeight());
 		return currentSprite ;
 	}
 	
 	public Sprite getKeySprite() 
-	{	
-		long actualTime = System.currentTimeMillis();
-		long deltaTime = actualTime - getLastTimeDrawed();
-		deltaTime = deltaTime / 1000;
-//		System.out.println("el tiempo delta va en "+ deltaTime);
-		//System.out.println("el tiempo actual e milis " + System.currentTimeMillis());
-		TextureRegion currentFrame = super.getKeyFrame(deltaTime , false);
-		Sprite currentSprite = new Sprite(currentFrame);
+	{
+		TextureRegion currentFrame;
+		Sprite currentSprite;
 		
-		//de aca para alla esta quemado
-		currentSprite.setSize(0.1f, 0.1f * currentSprite.getHeight() / currentSprite.getWidth());
-		currentSprite.setOrigin(currentSprite.getWidth()/2, currentSprite.getHeight()/2);
-		currentSprite.setPosition(-currentSprite.getWidth()/2, -currentSprite.getHeight()/2);
+		switch (getStatus()){
+		case STOPED : 
+			this.lastTimeDrawed = 0; 
+			currentFrame = super.getKeyFrame(this.lastTimeDrawed , isLoop());
+			currentSprite = new Sprite(currentFrame);
+		    break;
+		default :
+			this.lastTimeDrawed += Gdx.graphics.getDeltaTime(); 
+			currentFrame = super.getKeyFrame(this.lastTimeDrawed , isLoop());
+			currentSprite = new Sprite(currentFrame,50,20,currentFrame.getRegionWidth(),currentFrame.getRegionHeight());
+			break;
+		}
 		return currentSprite ;
 	}
 	
 	public void play()
 	{
-		setLastTimeDrawed(System.currentTimeMillis());
+		setLastTimeDrawed(0);
 		this.status = PLAYING;
 	}
 
@@ -90,7 +88,18 @@ public class AwaAnimation extends Animation {
 		return temp ; 
 	}
 	
+
 	public void dispose(){
 		getSpriteToDraw().getTexture().dispose();
 	}
+
+	public short getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(short status) {
+		this.status = status;
+	}
+
 }

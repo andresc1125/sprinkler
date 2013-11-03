@@ -20,10 +20,11 @@ public class World {
 //		Assets.load();
 		narutoAnims = new ArrayList<AwaAnimation>();
 		entities = new ArrayList<IGraphicEntity>();
-		narutoRunning =  new AwaAnimation(0.3f, Assets.narutoRun);
+		narutoRunning =  new AwaAnimation(0.1f, Assets.narutoRun);
 		narutoRunning.play();
 		narutoAnims.add(narutoRunning);
-		naruto = new AnimatedEntity(30, 30, 30, 30, narutoAnims);
+		naruto = new AnimatedEntity(10,20, 30, 30, narutoAnims);
+
 		entities.add(naruto);
 	}
 

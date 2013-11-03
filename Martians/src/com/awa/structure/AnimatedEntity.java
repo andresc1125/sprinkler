@@ -31,12 +31,28 @@ public class AnimatedEntity extends PlayableEntity {
 
 	@Override
 	public Sprite getSpriteToDraw() {
-		return this.getCurrentAnimation().getKeySprite();
+		Sprite currentSprite  = this.getCurrentAnimation().getKeySprite();
+		currentSprite.setSize(0.1f, 0.1f * currentSprite.getHeight() / currentSprite.getWidth());
+		currentSprite.setOrigin(currentSprite.getWidth()/2, currentSprite.getHeight()/2);
+//		currentSprite.setPosition(-0f, -0f);
+//		System.out.println(-currentSprite.getWidth() + "width " + -currentSprite.getHeight()+ "heigth");
+//		currentSprite.setBounds(0.2f, 0.2f, currentSprite.getWidth(),currentSprite.getHeight());
+		return currentSprite;
 	}
 	
 	@Override
 	public void dispose(){
 		this.currentAnimation.getKeySprite().getTexture().dispose();
+	}
+	
+	public void stopCurrentAnimation()
+	{
+		this.getCurrentAnimation().play();
+	}
+	
+	public void pauseCurrentAnimation()
+	{
+		this.getCurrentAnimation().play();
 	}
 
 }
