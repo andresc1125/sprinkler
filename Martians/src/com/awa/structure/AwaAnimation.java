@@ -16,7 +16,7 @@ public class AwaAnimation extends Animation {
 	public static final int STOPED = PAUSED + 1;
 	
 
-	private long lastTimeDrawed;
+	private float lastTimeDrawed;
 
 	public AwaAnimation(float frameDuration,Array<? extends TextureRegion> keyFrames) {
 		super(frameDuration, keyFrames);
@@ -39,19 +39,17 @@ public class AwaAnimation extends Animation {
 	
 	public Sprite getKeySprite() 
 	{
-		TextureRegion currentFrame;
 		Sprite currentSprite;
 		
 		switch (getStatus()){
 		case STOPED : 
 			this.lastTimeDrawed = 0; 
-			currentFrame = super.getKeyFrame(this.lastTimeDrawed , isLoop());
-			currentSprite = new Sprite(currentFrame);
+			currentSprite= getKeySprite(this.lastTimeDrawed , isLoop());
 		    break;
 		default :
 			this.lastTimeDrawed += Gdx.graphics.getDeltaTime(); 
-			currentFrame = super.getKeyFrame(this.lastTimeDrawed , isLoop());
-			currentSprite = new Sprite(currentFrame,50,20,currentFrame.getRegionWidth(),currentFrame.getRegionHeight());
+			System.out.println("la la "+this.lastTimeDrawed);
+			currentSprite = getKeySprite(this.lastTimeDrawed , isLoop());
 			break;
 		}
 		return currentSprite ;
@@ -73,18 +71,17 @@ public class AwaAnimation extends Animation {
 	}
 
 
-	public long getLastTimeDrawed() {
+	public float getLastTimeDrawed() {
 		return lastTimeDrawed;
 	}
 
 
-	public void setLastTimeDrawed(long lastTimeDrawed) {
+	public void setLastTimeDrawed(float lastTimeDrawed) {
 		this.lastTimeDrawed = lastTimeDrawed;
 	}
 	
 	public Sprite getSpriteToDraw() {
 		Sprite temp = getKeySprite();
-		temp.setPosition(10, 10);
 		return temp ; 
 	}
 	
