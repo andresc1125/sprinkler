@@ -1,5 +1,6 @@
 package com.awa.structure;
 
+import com.awa.structure.adapters.IShape;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -11,17 +12,35 @@ public class AwaAnimation extends Animation {
 	private boolean isLoop;
 	private short status;
 	
-	public static final int PLAYING = 1;
-	public static final int PAUSED = PLAYING + 1;
-	public static final int STOPED = PAUSED + 1;
-	
+	public static final short PLAYING = 1;
+	public static final short PAUSED = PLAYING + 1;
+	public static final short STOPED = PAUSED + 1;
 
 	private float lastTimeDrawed;
+	
+	private IShape bounds;
 
+	public AwaAnimation(float frameDuration,Array<? extends TextureRegion> keyFrames, IShape bounds) {
+		super(frameDuration, keyFrames);
+		this.isLoop = false;
+		this.status = PAUSED;
+		this.lastTimeDrawed = 0;
+		this.bounds = bounds;
+	}
+	
 	public AwaAnimation(float frameDuration,Array<? extends TextureRegion> keyFrames) {
 		super(frameDuration, keyFrames);
-		isLoop = false;
-		status = STOPED;
+		this.isLoop = false;
+		this.status = PAUSED;
+		this.lastTimeDrawed = 0;
+	}
+	
+	public AwaAnimation(float frameDuration,Array<? extends TextureRegion> keyFrames, boolean isLoop, IShape bounds) {
+		super(frameDuration, keyFrames);
+		this.isLoop = isLoop;
+		this.status = PAUSED;
+		this.lastTimeDrawed = 0;
+		this.bounds = bounds;
 	}
 	
 	
@@ -32,23 +51,23 @@ public class AwaAnimation extends Animation {
 	 * @return the TextureRegion representing the frame of animation for the given state time. */
 	public Sprite getKeySprite(float stateTime, boolean looping) 
 	{
-		TextureRegion currentFrame = super.getKeyFrame(stateTime , looping);
+		TextureRegion currentFrame = this.getKeyFrame(stateTime , looping);
 		Sprite currentSprite = new Sprite(currentFrame);
 		return currentSprite ;
 	}
 	
+	/** Returns the {@link Sprite} to draw without any parameters 
+	 * */
 	public Sprite getKeySprite() 
 	{
 		Sprite currentSprite;
 		
 		switch (getStatus()){
-		case STOPED : 
-			this.lastTimeDrawed = 0; 
-			currentSprite= getKeySprite(this.lastTimeDrawed , isLoop());
-		    break;
+		case PAUSED:
+			currentSprite = getKeySprite(this.lastTimeDrawed , isLoop());
+			break;
 		default :
 			this.lastTimeDrawed += Gdx.graphics.getDeltaTime(); 
-			System.out.println("la la "+this.lastTimeDrawed);
 			currentSprite = getKeySprite(this.lastTimeDrawed , isLoop());
 			break;
 		}
@@ -57,8 +76,12 @@ public class AwaAnimation extends Animation {
 	
 	public void play()
 	{
-		setLastTimeDrawed(0);
-		this.status = PLAYING;
+		setStatus(PLAYING);
+	}
+
+	public void pause()
+	{
+		setStatus(PAUSED);
 	}
 
 	public boolean isLoop() {
@@ -81,13 +104,7 @@ public class AwaAnimation extends Animation {
 	}
 	
 	public Sprite getSpriteToDraw() {
-		Sprite temp = getKeySprite();
-		return temp ; 
-	}
-	
-
-	public void dispose(){
-		getSpriteToDraw().getTexture().dispose();
+		return  getKeySprite() ; 
 	}
 
 	public short getStatus() {
@@ -97,6 +114,14 @@ public class AwaAnimation extends Animation {
 
 	public void setStatus(short status) {
 		this.status = status;
+	}
+	
+	public IShape getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(IShape bounds) {
+		this.bounds = bounds;
 	}
 
 }
