@@ -1,13 +1,13 @@
 package com.awa.structure;
 
 import java.util.ArrayList;
-import com.awa.structure.Entity;
+import com.awa.structure.IEntity;
 import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.me.mygdxgame.Assets;
 
-public class World implements Entity  {
+public class World implements IEntity  {
 	
 	public final ArrayList<IGraphicEntity> entities;
 	private ArrayList<AwaAnimation> narutoAnims;

@@ -4,10 +4,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.awa.structure.Entity;
+import com.awa.structure.IEntity;
 import com.awa.structure.adapters.IShape;
 
-public interface IGraphicEntity extends Entity {
+public interface IGraphicEntity extends IEntity {
 
     public boolean isVisible();
     
