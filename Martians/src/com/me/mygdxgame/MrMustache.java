@@ -8,7 +8,8 @@ import com.awa.structure.AwaAnimation;
 public class MrMustache extends AnimatedEntity{
 
 	private int lives;
-	private Weapon weapon;
+	private ArrayList<Weapon> weapons;
+	private Weapon currentWeapon;
 	private int resistance;
 	
 	
@@ -19,5 +20,33 @@ public class MrMustache extends AnimatedEntity{
 		// TODO Auto-generated constructor stub
 	}
 
+	public void dropWeapon(Weapon weapon){
+		this.weapons.remove(weapon);
+	}
 	
+	public void pickUpWeapon(Weapon weapon){
+		this.weapons.add(weapon);
+	}
+	
+	public Weapon getCurrentWeapon(){
+		return this.currentWeapon;
+	}
+	
+	public ArrayList<Weapon> getWeapons(){
+		return this.weapons;
+	}
+	
+	public void fire(){
+		if(!getCurrentWeapon().isEmpty()){
+			getCurrentWeapon().fire();
+		}
+	}
+	
+	public void setCurrentWeapon(Weapon weapon){
+		this.currentWeapon = weapon;
+	}
+	
+	public void loadWeapon(Weapon weapon, int amount){
+		weapon.load(amount);
+	}
 }
