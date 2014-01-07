@@ -14,7 +14,7 @@ public class Circle2 extends Circle implements IShape{
 
 	@Override
 	public boolean collidesWithRectangle(Rectangle rectangle) {
-		// TODO Auto-generated method stubfloat distanceX;
+		// TODO Auto-generated method stub
 		float distanceX;
 		float distanceY;
 		float cornerDistance;
