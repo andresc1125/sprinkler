@@ -49,4 +49,14 @@ public class MrMustache extends AnimatedEntity{
 	public void loadWeapon(Weapon weapon, int amount){
 		weapon.load(amount);
 	}
+	
+	public void jump(){
+		
+	}
+	
+	public void move(){
+		
+	}
+	
+	
 }

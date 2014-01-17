@@ -27,9 +27,6 @@ public class Weapon {
 	}
 	
 	public boolean isEmpty(){
-		if(bulletAmount == 0){
-			return true;
-		}
-		return false;
+		return bulletAmount == 0;
 	}
 }

@@ -15,4 +15,11 @@ public class Bullet extends AnimatedEntity{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void setDamage(int damage){
+		this.damage = damage;
+	}
+	
+	public int getDamage(){
+		return this.damage;
+	}
 }
