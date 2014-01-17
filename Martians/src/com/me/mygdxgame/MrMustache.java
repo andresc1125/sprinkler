@@ -11,6 +11,8 @@ public class MrMustache extends AnimatedEntity{
 	private ArrayList<Weapon> weapons;
 	private Weapon currentWeapon;
 	private int resistance;
+	private int score;
+	private int money;
 	
 	
 	
@@ -58,5 +60,23 @@ public class MrMustache extends AnimatedEntity{
 		
 	}
 	
+	public void setScore(int score){
+		this.score = score;
+	}
 	
+	public int getScore(){
+		return this.score;
+	}
+	
+	public int getMoney(){
+		return this.money;
+	}
+	
+	public void setMoney(int money){
+		this.money = money;
+	}
+	
+	public void catchCoin(Coin coin){
+		setMoney(getMoney()+coin.getValue());
+	}
 }
